@@ -11,3 +11,4 @@ Cargo.lock
 
 # Image output
 output.png
+output/*

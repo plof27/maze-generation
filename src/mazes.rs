@@ -43,7 +43,11 @@ impl Maze {
             }
         }
 
-        while let Some(walk_start_point) = necessary_cells.pop() {
+        // This shuffle is totally unnecessary, and probably makes the algorithm slower.
+        // But it *looks cool*.
+        necessary_cells.shuffle(&mut thread_rng());
+
+        for walk_start_point in necessary_cells {
             if maze.cells[walk_start_point.0][walk_start_point.1] == CellType::Wall {
                 let walk = maze.generate_loop_erased_random_walk(walk_start_point);
                 for cell in walk {
